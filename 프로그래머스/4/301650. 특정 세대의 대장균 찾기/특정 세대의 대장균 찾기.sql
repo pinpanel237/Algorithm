@@ -1,0 +1,20 @@
+WITH RECURSIVE ECOLI_TREE AS (
+    SELECT ID, 
+           PARENT_ID, 
+           1 AS 'DEPTH'
+    FROM ECOLI_DATA
+    WHERE PARENT_ID IS NULL
+    
+    UNION ALL
+    
+    SELECT e.ID, 
+           e.PARENT_ID, 
+           t.depth + 1 AS 'DEPTH'
+    FROM ECOLI_DATA e
+    INNER JOIN ECOLI_TREE t
+        ON e.PARENT_ID = t.ID
+)
+SELECT ID
+FROM ECOLI_TREE
+WHERE DEPTH = 3
+ORDER BY ID;

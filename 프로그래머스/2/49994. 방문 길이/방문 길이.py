@@ -15,11 +15,10 @@ def solution(dirs):
             next_pos = (x + 1, y)
         
         if is_in_boundary(next_pos):
-            dir_set.add((cur_pos, next_pos))
-            dir_set.add((next_pos, cur_pos))
+            dir_set.add(tuple(sorted((cur_pos, next_pos))))
             cur_pos = next_pos
     
-    return len(dir_set) // 2
+    return len(dir_set)
 
 def is_in_boundary(next_pos):
     x, y = next_pos

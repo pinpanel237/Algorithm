@@ -1,14 +1,8 @@
 def solution(n):
-    answer = 0
-    mul_num = 1
-    stack = []
+    answer = ''
     
     while n != 0:
-        stack.append(n % 3)
-        n //= 3
-    
-    while stack:
-        answer += stack.pop()  * mul_num
-        mul_num *= 3
+        n, r = divmod(n, 3)
+        answer += str(r)
         
-    return answer
+    return int(answer, 3)
